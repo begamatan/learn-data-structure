@@ -15,6 +15,12 @@ class LinkedList:
             print(temp.data)
             temp = temp.next
 
+    def printReverse(self, head):
+        if (head.next == None):
+            print(head.data)
+            return
+        self.printReverse(head.next)
+        print(head.data)
 
 # https: // www.freecodecamp.org/news/whats-in-a-python-s-name-506262fe61e8/
 # When you run this file, __name__ is equal to __main__.
@@ -37,3 +43,7 @@ if __name__ == "__main__":
     llist.printList()
 
     # so list is started with head and linked to next node until it's end
+    # After trying this, what I understand is element can easily inserted in linked list over array, because you just need to move the next pointer instead shifting the entire element that near the new element.
+
+    # Learn reverse list recursive function
+    llist.printReverse(llist.head)
