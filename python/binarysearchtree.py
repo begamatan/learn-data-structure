@@ -33,8 +33,45 @@ class BinarySearchTree:
             print(root.val)
             self.inorder(root.right)
 
+    def delete(self, root, key):
+        if root is None:
+            return root
+
+        if key < root.val:
+            root.left = self.delete(root.left, key)
+
+        elif key > root.val:
+            root.right = self.delete(root.right, key)
+
+        else:
+            if root.left is None:
+                temp = root.right
+                root = None
+                return temp
+
+            elif root.right is None:
+                temp = root.left
+                root = None
+                return temp
+
+            else:
+                temp = self.getMinVal(root.right)
+                root.val = temp.val
+                root.right = self.delete(root.right, temp.val)
+                return root
+
+        return root
+
+    def getMinVal(self, root):
+        minval = root
+        while minval.left is not None:
+            minval = minval.left
+        return minval
+
 if __name__ == "__main__":
-    bst = BinarySearchTree(Node(3))
-    bst.insert(bst, Node(2))
-    bst.insert(bst, Node(4))
+    bst = BinarySearchTree(Node(50))
+    bst.insert(bst, Node(40))
+    bst.insert(bst, Node(60))
+    bst.insert(bst, Node(70))
+    bst.insert(bst, Node(80))
     bst.inorder(bst)

@@ -46,5 +46,18 @@ class BinarySearchTreeTest(unittest.TestCase):
         res = bst.search(bst, 5)
         self.assertIsNone(res)
 
+    def test_delete_method(self):
+        bst = BinarySearchTree(Node(50))
+        bst.insert(bst, Node(40))
+        bst.insert(bst, Node(70))
+        bst.insert(bst, Node(60))
+        bst.insert(bst, Node(80))
+        bst.delete(bst, 50)
+        self.assertEqual(bst.val, 60)
+        bst.delete(bst, 40)
+        self.assertIsNone(bst.left)
+        bst.delete(bst, 80)
+        self.assertIsNone(bst.right.right)
+
 if __name__ == "__main__":
     unittest.main()
